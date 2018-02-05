@@ -1,12 +1,11 @@
 package api
 
 import (
+	"My-project/conf"
 	"context"
 	"database/sql"
-	"My-project/conf"
-	"net/http"
-
 	"log"
+	"net/http"
 	"time"
 
 	"github.com/go-chi/chi"

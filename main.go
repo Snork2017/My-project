@@ -1,15 +1,12 @@
 package main
 
 import (
-	"My-project/db"
-	"context"
 	"My-project/api"
 	"My-project/conf"
-
-	"log"
-
+	"My-project/db"
 	"My-project/setup"
-
+	"context"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
