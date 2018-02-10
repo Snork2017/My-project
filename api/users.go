@@ -13,6 +13,8 @@ import (
 func (api *API) initUsersRoutes(r chi.Router) {
 	r.Get("/", api.getUsersByName)
 	r.Get("/createusers", api.insert)
+	r.Get("/removeusers", api.remove)
+	r.Get("/updateusers", api.update)
 }
 
 func (api *API) getUsersByName(w http.ResponseWriter, r *http.Request) {
@@ -101,5 +103,20 @@ func (api *API) insert(w http.ResponseWriter, r *http.Request){
 
 	w.Write([]byte(fmt.Sprintf("Уважаемый %s приветствуем вас", firstname)))
 }
+func (api *API) remove(w http.ResponseWriter, r *http.Request)  {
+	_, err := api.db.Exec("DELETE FROM users WHERE Id=2")
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
 
+func (api *API) update(w http.ResponseWriter, r *http.Request)  {
 
+	_, err := api.db.Exec("UPDATE users SET firstname = $1, secondname = $2, thirdname = $3, phone = $4 WHERE Id=$5",
+		"Snork", "Kantemir", "Vitya", 234, 2)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
+}
